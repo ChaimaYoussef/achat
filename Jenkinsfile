@@ -31,7 +31,10 @@ pipeline {
                     usernameVariable: 'NEXUS_USER',
                     passwordVariable: 'NEXUS_PASSWORD'
                 )]) {
-                    sh './mvnw -B -s settings.xml deploy'
+                    sh '''
+                        set +x
+                        ./mvnw -B -s settings.xml deploy
+                    '''
                 }
             }
         }
