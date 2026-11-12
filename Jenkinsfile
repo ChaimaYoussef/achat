@@ -24,6 +24,18 @@ pipeline {
             }
         }
 
+        stage('Deploy to Nexus') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'nexus-credentials',
+                    usernameVariable: 'NEXUS_USER',
+                    passwordVariable: 'NEXUS_PASSWORD'
+                )]) {
+                    sh './mvnw -B -s settings.xml deploy'
+                }
+            }
+        }
+
         stage('Publication des rapports') {
             steps {
                 junit 'target/surefire-reports/*.xml'
