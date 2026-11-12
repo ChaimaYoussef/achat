@@ -19,7 +19,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh './mvnw -B sonar:sonar'
+                    sh './mvnw -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
                 }
             }
         }
