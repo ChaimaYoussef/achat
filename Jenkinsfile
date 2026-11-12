@@ -9,16 +9,18 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-
         stage('Build et Tests') {
             steps {
                 sh 'chmod +x mvnw'
                 sh './mvnw -B clean verify'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn -B sonar:sonar'
+                }
             }
         }
 
@@ -36,3 +38,4 @@ pipeline {
         }
     }
 }
+
