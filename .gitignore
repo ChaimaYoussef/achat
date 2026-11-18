@@ -31,3 +31,32 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Environment & Secrets ###
+.env
+.env.*
+!.env.example
+*.env
+
+### Certificates and Private Keys ###
+*.pem
+*.key
+*.jks
+*.p12
+*.crt
+*.cer
+
+### Local Application Configuration ###
+application-local.properties
+application-secret.properties
+settings-local.xml
+
+### Logs & Diagnostics ###
+*.log
+*.hprof
+hs_err_pid*
+
+### OS Generated Files ###
+.DS_Store
+Thumbs.db
+

@@ -24,6 +24,12 @@ pipeline {
             }
         }
 
+        stage('OWASP Dependency-Check') {
+            steps {
+                sh './mvnw -B org.owasp:dependency-check-maven:check -DfailBuildOnCVSS=8 -DskipTestScope=true || true'
+            }
+        }
+
         stage('Deploy to Nexus') {
             steps {
                 withCredentials([usernamePassword(
@@ -47,8 +53,9 @@ pipeline {
 
         stage('Archivage') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar',
-                                 fingerprint: true
+                archiveArtifacts artifacts: 'target/*.jar, target/dependency-check-report.*',
+                                 fingerprint: true,
+                                 allowEmptyArchive: true
             }
         }
     }

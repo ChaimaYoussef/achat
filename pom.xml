@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<nexus.url>http://192.168.67.10:8081/repository/maven-releases/</nexus.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -25,6 +26,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -110,7 +115,7 @@
 		<repository>
 			<id>nexus-releases</id>
 			<name>Nexus Releases</name>
-			<url>http://192.168.67.10:8081/repository/maven-releases/</url>
+			<url>${nexus.url}</url>
 		</repository>
 	</distributionManagement>
 
